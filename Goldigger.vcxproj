@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>15.0</VCProjectVersion>
+    <ProjectGuid>{480E7CA4-CCFB-484A-BA04-62426D70D22C}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <Optimization>Disabled</Optimization>
+    </ClCompile>
+    <Link>
+      <TargetMachine>MachineX86</TargetMachine>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <TargetMachine>MachineX86</TargetMachine>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\SDL2\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+    </ClCompile>
+    <Link>
+      <AdditionalLibraryDirectories>C:\SDL2\lib\x64;C:\SDL2\SDL2_image\SDL2_image-2.0.3\lib\x64;C:\SDL2\SDL2_mixer\SDL2_mixer-2.0.2\lib\x64;C:\SDL2\SDL2_ttf\SDL2_ttf-2.0.14\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_ttf.lib;SDL2_image.lib;SDL2_mixer.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <SubSystem>Console</SubSystem>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\SDL2\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+    </ClCompile>
+    <Link>
+      <AdditionalLibraryDirectories>C:\SDL2\lib\x64;C:\SDL2\SDL2_image\SDL2_image-2.0.3\lib\x64;C:\SDL2\SDL2_mixer\SDL2_mixer-2.0.2\lib\x64;C:\SDL2\SDL2_ttf\SDL2_ttf-2.0.14\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_ttf.lib;SDL2_image.lib;SDL2_mixer.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <SubSystem>Console</SubSystem>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="src\GameSDL.c" />
+    <ClCompile Include="src\GameState.c" />
+    <ClCompile Include="src\main.c" />
+    <ClCompile Include="src\MapObject.c" />
+    <ClCompile Include="src\module.c" />
+    <ClCompile Include="src\player.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\GameSDL.h" />
+    <ClInclude Include="src\GameState.h" />
+    <ClInclude Include="src\MapObject.h" />
+    <ClInclude Include="src\module.h" />
+    <ClInclude Include="src\player.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="doc\html\annotated.html" />
+    <None Include="doc\html\classes.html" />
+    <None Include="doc\html\files.html" />
+    <None Include="doc\html\globals.html" />
+    <None Include="doc\html\globals_func.html" />
+    <None Include="doc\html\graph_legend.html" />
+    <None Include="doc\html\index.html" />
+    <None Include="doc\html\module_8h.html" />
+    <None Include="doc\html\module_8h_source.html" />
+    <None Include="doc\html\player_8h.html" />
+    <None Include="doc\html\player_8h_source.html" />
+    <None Include="doc\html\search\all_0.html" />
+    <None Include="doc\html\search\all_1.html" />
+    <None Include="doc\html\search\all_2.html" />
+    <None Include="doc\html\search\all_3.html" />
+    <None Include="doc\html\search\all_4.html" />
+    <None Include="doc\html\search\all_5.html" />
+    <None Include="doc\html\search\all_6.html" />
+    <None Include="doc\html\search\all_7.html" />
+    <None Include="doc\html\search\all_8.html" />
+    <None Include="doc\html\search\all_9.html" />
+    <None Include="doc\html\search\classes_0.html" />
+    <None Include="doc\html\search\classes_1.html" />
+    <None Include="doc\html\search\classes_2.html" />
+    <None Include="doc\html\search\classes_3.html" />
+    <None Include="doc\html\search\classes_4.html" />
+    <None Include="doc\html\search\classes_5.html" />
+    <None Include="doc\html\search\files_0.html" />
+    <None Include="doc\html\search\files_1.html" />
+    <None Include="doc\html\search\files_2.html" />
+    <None Include="doc\html\search\functions_0.html" />
+    <None Include="doc\html\search\functions_1.html" />
+    <None Include="doc\html\search\functions_2.html" />
+    <None Include="doc\html\search\functions_3.html" />
+    <None Include="doc\html\search\functions_4.html" />
+    <None Include="doc\html\search\functions_5.html" />
+    <None Include="doc\html\search\functions_6.html" />
+    <None Include="doc\html\search\functions_7.html" />
+    <None Include="doc\html\search\nomatches.html" />
+    <None Include="doc\html\struct_dynamite.html" />
+    <None Include="doc\html\struct_enemy.html" />
+    <None Include="doc\html\struct_game_state.html" />
+    <None Include="doc\html\struct_gold.html" />
+    <None Include="doc\html\struct_ladder.html" />
+    <None Include="doc\html\struct_lava.html" />
+    <None Include="doc\html\struct_ledge.html" />
+    <None Include="doc\html\struct_man.html" />
+    <None Include="doc\html\struct_portal.html" />
+    <None Include="doc\html\_game_state_8h.html" />
+    <None Include="doc\html\_game_state_8h_source.html" />
+    <None Include="doc\html\_game_s_d_l_8h.html" />
+    <None Include="doc\html\_game_s_d_l_8h_source.html" />
+    <None Include="doc\html\_map_object_8h.html" />
+    <None Include="doc\html\_map_object_8h_source.html" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2018
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Goldigger", "Goldigger.vcxproj", "{480E7CA4-CCFB-484A-BA04-62426D70D22C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{480E7CA4-CCFB-484A-BA04-62426D70D22C}.Debug|x64.ActiveCfg = Debug|x64
+		{480E7CA4-CCFB-484A-BA04-62426D70D22C}.Debug|x64.Build.0 = Debug|x64
+		{480E7CA4-CCFB-484A-BA04-62426D70D22C}.Debug|x86.ActiveCfg = Debug|Win32
+		{480E7CA4-CCFB-484A-BA04-62426D70D22C}.Debug|x86.Build.0 = Debug|Win32
+		{480E7CA4-CCFB-484A-BA04-62426D70D22C}.Release|x64.ActiveCfg = Release|x64
+		{480E7CA4-CCFB-484A-BA04-62426D70D22C}.Release|x64.Build.0 = Release|x64
+		{480E7CA4-CCFB-484A-BA04-62426D70D22C}.Release|x86.ActiveCfg = Release|Win32
+		{480E7CA4-CCFB-484A-BA04-62426D70D22C}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8420843B-9BB9-44E4-B41B-9331035D4CFF}
+	EndGlobalSection
+EndGlobal
