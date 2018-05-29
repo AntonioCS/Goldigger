@@ -5,8 +5,8 @@
  @date 23 MAI 2016
  */
 
-#ifndef _PLAYER_H
-#define _PLAYER_H
+#pragma once
+
 #if defined (__APPLE__)
   #include "SDL_mixer.h"
 #else
@@ -18,7 +18,7 @@
 @brief Man: Structure du joueur contenant ces positions, ces status,compteur de dynamites et de lingos d'or ainsi que les frames.
 
 */
-typedef struct
+struct Man
 {
   float x, y, w, h;
   float dx, dy;
@@ -47,12 +47,10 @@ typedef struct
   Mix_Chunk *dieSound;
   Mix_Chunk *jumpSound;
 
-} Man;
+};
 
 
 void initMan(Man *man);
 void initManLevel(Man *man);
 void manHurt(Man *man);
 void manDies(Man *man);
-
-#endif

@@ -5,54 +5,53 @@
  @date 23 MAI 2016
  */
 
-#ifndef _MAPOBJECT_H
-#define _MAPOBJECT_H
+#pragma once
 
-typedef struct
+struct Ledge
 {
   float x, y, w, h;
   int ledgeType;
   int destroyed;
-} Ledge;
+};
 
-typedef struct
+struct Ladder
 {
   float x, y, w, h;
   int ladderType;
-} Ladder;
+};
 
-typedef struct
+struct Gold
 {
   float x, y, w, h;
   int display;
-} Gold;
+};
 
-typedef struct
+struct Portal
 {
   float x, y, w, h;
   int open;
-} Portal;
+};
 
-typedef struct
+struct Dynamite
 {
   float x, y, w, h;
   int countdown;
   int used;
-} Dynamite;
+};
 
-typedef struct
+struct Lava
 {
   float x, y, w, h;
   int lava_anim;
   //int lavaType;
-} Lava;
+};
 
-typedef struct
+struct Enemy
 {
   float x, y, w, h;
   int enemy_animFrame;
   int facingLeft;
-} Enemy;
+};
 
 
 /**
@@ -63,5 +62,3 @@ typedef struct
  */
 
 int Ledge_getX (Ledge * l);
-
-#endif

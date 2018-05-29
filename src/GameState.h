@@ -5,75 +5,76 @@
  @date 23 MAI 2016
  */
 
+#pragma once
 
-#ifndef _GAMESTATE_H
-#define _GAMESTATE_H
-#if defined (__APPLE__)
-	#include "SDL_mixer.h"
-#else
-	#include "SDL2/SDL_mixer.h"
-#endif
+#include <SDL2/SDL_main.h>
+#include <SDL2/SDL_mixer.h>
+#include "MapObject.h"
+#include "player.h"
+
 /**
 @struct GameState GameState.h
-@brief GameState: c'est le module central qui gère le chargement des niveaux, des éléments du décors, gère les collisions et réajuste les déplacements élémentaires dx, dy . C'est le noyau du jeu qui traite les informations reçus par les modules périphiriques, ce module est composé d'une structure de tableau de structures ou de structures, ce qui a rendu complexe l'integration des mutatteurs et poser des problèmes de dépendance cerculaire dans l'inclusion des fichier headers. Ayant réalisé ce fait trop tardivement nous n'avons pas pu respecter les modalitées de conceptions. Néanmoins nous avons mit un exemple de muttateur qui accéde au champ  d'une des case de structure appartenent à une structure. Enfin l'avantage de passer par cette structure regroupant les sous structures est de pouvoir comprendre plus facilement le code a mesure qu'on le produit.
+@brief GameState: c'est le module central qui gère le chargement des niveaux, des éléments du décors, gère les collisions et réajuste les déplacements élémentaires dx, dy . 
+C'est le noyau du jeu qui traite les informations reçus par les modules périphiriques, ce module est composé d'une structure de tableau de structures ou de structures, 
+ce qui a rendu complexe l'integration des mutatteurs et poser des problèmes de dépendance cerculaire dans l'inclusion des fichier headers. 
+Ayant réalisé ce fait trop tardivement nous n'avons pas pu respecter les modalitées de conceptions. 
+Néanmoins nous avons mit un exemple de muttateur qui accéde au champ  d'une des case de structure appartenent à une structure. Enfin l'avantage de passer par cette structure 
+regroupant les sous structures est de pouvoir comprendre plus facilement le code a mesure qu'on le produit.
 
 */
-typedef struct
-{
-  int stageNum;
+struct GameState {
+    int stageNum;
 
-	//MAP
+    //MAP
 
-	float mapGravity;
-	float mapDimX;
-	float mapDimY;
+    float mapGravity;
+    float mapDimX;
+    float mapDimY;
 
-  //Players
-  Man man;
+    //Players
+    Man man;
 
-  //Ledges
-  Ledge *ledges;
-  int nbLedges;
+    //Ledges
+    Ledge* ledges;
+    int nbLedges;
 
-  //Ladder
-  Ladder *ladders;
-  int nbLadders;
+    //Ladder
+    Ladder* ladders;
+    int nbLadders;
 
-  // Lava
-  Lava *lava_blocks;
-  int nbLava_blocks;
+    // Lava
+    Lava* lava_blocks;
+    int nbLava_blocks;
 
-  //Gold
-  Gold *golds;
-  int nbGolds;
+    //Gold
+    Gold* golds;
+    int nbGolds;
 
-  Dynamite *dynamites;
-  int nbDynamites;
+    Dynamite* dynamites;
+    int nbDynamites;
 
-  Enemy *snake;
-  int nbEnemies;
+    Enemy* snake;
+    int nbEnemies;
 
-  Portal gate;
+    Portal gate;
 
-  //Images
+    //Images
 
-  SDL_Texture *sheetTexture;
-  SDL_Texture *backgroundTexture;
+    SDL_Texture* sheetTexture;
+    SDL_Texture* backgroundTexture;
 
+    //Sounds
+    int musicChannel;
+    Mix_Chunk* bgMusic;
+    Mix_Chunk* bombSound;
+    Mix_Chunk* goldSound;
 
-  //Sounds
-  int musicChannel;
-  Mix_Chunk *bgMusic;
-  Mix_Chunk *bombSound;
-  Mix_Chunk *goldSound;
+    int time;
 
-  int time;
-
-  //Renderer
-  SDL_Renderer *renderer;
-  SDL_Window *window;                    // Declare une fenetre
-
-} GameState;
+    //Renderer
+    SDL_Renderer* renderer;
+    SDL_Window* window; // Declare une fenetre
+};
 
 /**
  @fn  int game_getLedgeX(GameState *game, int i)
@@ -82,8 +83,7 @@ typedef struct
  @param [in] i la position dans le tableau de structure Ledge 
  @return int
  */
-int game_getLedgeX(GameState *game, int i);
-
+int game_getLedgeX(GameState* game, int i);
 
 /**
  @fn  void SetStageNum(GameState *game, int stageNum)
@@ -92,7 +92,7 @@ int game_getLedgeX(GameState *game, int i);
  @param [in] stageNum le numéro du level à charger
  @return void
  */
-void SetStageNum(GameState *game, int stageNum);
+void SetStageNum(GameState* game, int stageNum);
 
 /**
  @fn  void initLevel(GameState *game, int level)
@@ -101,7 +101,7 @@ void SetStageNum(GameState *game, int stageNum);
  @param [in] level le numéro du level à initialiser
  @return void
  */
-void initLevel(GameState *game, int level);
+void initLevel(GameState* game, int level);
 
 /**
  @fn  loadMap(char *name, GameState *game)
@@ -110,8 +110,7 @@ void initLevel(GameState *game, int level);
  @param [in, out] game pointeur sur GameState
  @return void
  */
-void loadMap(char *name, GameState *game);
-
+void loadMap(char* name, GameState* game);
 
 /**
  @fn  void loadGame(GameState *game)
@@ -119,8 +118,7 @@ void loadMap(char *name, GameState *game);
  @param [in, out] game pointeur sur GameState
  @return void
  */
-void loadGame(GameState *game);
-
+void loadGame(GameState* game);
 
 /**
  @fn  void process(GameState *game)
@@ -128,7 +126,7 @@ void loadGame(GameState *game);
  @param [in, out] game pointeur sur GameState
  @return void
  */
-void process(GameState *game);
+void process(GameState* game);
 
 /**
  @fn  void collisionDetect(GameState *game)
@@ -136,7 +134,7 @@ void process(GameState *game);
  @param [in, out] game pointeur sur GameState
  @return void
  */
-void collisionDetect(GameState *game);
+void collisionDetect(GameState* game);
 
 /**
  @fn  void updateManPosition(GameState *game)
@@ -144,7 +142,7 @@ void collisionDetect(GameState *game);
  @param [in, out] game pointeur sur GameState
  @return void
  */
-void updateManPosition(GameState *game);
+void updateManPosition(GameState* game);
 
 /**
  @fn  collide2dSnakes(GameState *game)
@@ -152,8 +150,6 @@ void updateManPosition(GameState *game);
  @param [in, out] game pointeur sur GameState
  @return void
  */
-void collide2dSnakes(GameState *game);
+void collide2dSnakes(GameState* game);
 
-
-void setLevelBackground(GameState *game, char* bgImagePath);
-#endif
+void setLevelBackground(GameState* game, char* bgImagePath);

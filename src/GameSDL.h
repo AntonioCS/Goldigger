@@ -6,12 +6,9 @@
  */
 
 
-#ifndef _GAMESDL_h
-/**
-@def _GAMESDL_h
-*/
-#define _GAMESDL_h
+#pragma once
  
+#include "GameState.h"
 
 
 /**
@@ -124,6 +121,3 @@ void doRenderDynamite(GameState *game);
  @return void
  */
 void doRenderEnemies(GameState *game);
-
-
-#endif
