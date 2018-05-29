@@ -1,20 +1,28 @@
-#if defined(__APPLE__)
-#include "SDL.h"
-#include "SDL_image.h"
-#include <assert.h>
-#else
-#include "SDL2/SDL.h"
-#include "SDL2/SDL_image.h"
-#include <assert.h>
-#endif
+#include <SDL2/SDL.h>
+#include <SDL2/SDL_image.h>
 
+#include <array>
+#include <fstream>
+#include <iostream>
+
+#include <stdio.h>  /* defines FILENAME_MAX */
+#include <direct.h>
+
+#define GetCurrentDir _getcwd
+
+
+#include <assert.h>
+#include <stdio.h>
+#include <time.h>
 #include "GameState.h"
 #include "MapObject.h"
 #include "module.h"
 #include "player.h"
-#include <stdio.h>
-#include <time.h>
 
+namespace {
+	const int mapWidth = 20;
+	const int mapHeight = 10;
+}
 int game_getLedgeX(GameState* game, int i)
 {
     return Ledge_getX(&game->ledges[i]);
@@ -56,29 +64,37 @@ void updateManPosition(GameState* game)
     }
 }
 
-void loadMap(char* name, GameState* game)
+void loadMap(char* fileName, GameState* game)
 {
-    int** tile = createArray(game->mapDimX, game->mapDimY);
+    //int** tile = createArray(game->mapDimX, game->mapDimY);
+	std::array<std::array<int, mapWidth>, mapHeight> tile;
+
+
     int i = 0;
     int j = 0; // les compteurs pour les tableaux dechelles ou de ledges
     int k = 0;
     int l = 0;
     int m = 0;
 
-    int x, y;
-    FILE* fp;
+    //FILE* fp;
+	std::ifstream mapFile(fileName);
 
-    fp = fopen(name, "r");
+    //fp = fopen(name, "r");
 
-    if (fp == NULL) {
-        printf("Erreur de lecture de la map %s\n", name);
+    //if (fp == NULL) {
+    if (mapFile.is_open() == false) {
+        //printf("Erreur de lecture de la map %s\n", name);
 
         exit(1);
     }
 
-    for (y = 0; y < game->mapDimY; y++) {
-        for (x = 0; x < game->mapDimX; x++) {
-            fscanf(fp, "%d", &tile[y][x]);
+    //for (y = 0; y < game->mapDimY; y++) {
+     //   for (x = 0; x < game->mapDimX; x++) {
+	for (int y = 0; y < mapHeight; y++) {
+        for (int x = 0; x < mapWidth; x++) {
+			mapFile >> tile[y][x];
+
+            //fscanf(fp, "%d", &tile[y][x]);
             if (tile[y][x] == 1 || tile[y][x] == 2 || tile[y][x] == 7) {
                 game->nbLedges++;
             }
@@ -97,6 +113,8 @@ void loadMap(char* name, GameState* game)
         }
     }
 
+//	exit(0);
+
     game->ledges = (Ledge*)malloc(game->nbLedges * sizeof(Ledge));
     assert(game->ledges != NULL);
     game->ladders = (Ladder*)malloc(game->nbLadders * sizeof(Ladder));
@@ -108,8 +126,8 @@ void loadMap(char* name, GameState* game)
     game->snake = (Enemy*)malloc(game->nbEnemies * sizeof(Enemy));
     assert(game->snake != NULL);
 
-    for (y = 0; y < game->mapDimY; y++) {
-        for (x = 0; x < game->mapDimX; x++) {
+    for (int y = 0; y < game->mapDimY; y++) {
+        for (int x = 0; x < game->mapDimX; x++) {
             if (tile[y][x] == 1 || tile[y][x] == 2 || tile[y][x] == 7) // ledges dirt ou grass ou snow
             {
                 game->ledges[i].w = 64;
@@ -175,8 +193,8 @@ void loadMap(char* name, GameState* game)
         }
     }
 
-    fclose(fp);
-    destroyArray(tile);
+    //fclose(fp);
+    //destroyArray(tile);
 }
 
 void initLevel(GameState* game, int level)
@@ -225,6 +243,16 @@ void loadGame(GameState* game)
     surface = IMG_Load("files/images/Sprites.png");
 
     if (surface == NULL) {
+		char cCurrentPath[FILENAME_MAX];
+
+		if (!GetCurrentDir(cCurrentPath, sizeof(cCurrentPath)))
+		{
+			//return errno;
+		}
+
+		cCurrentPath[sizeof(cCurrentPath) - 1] = '\0'; /* not really required */
+
+		printf("The current working directory is %s", cCurrentPath);
         printf("Cannot find Sprites.png !\n\n");
         SDL_Quit();
         exit(1);
