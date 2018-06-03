@@ -64,11 +64,14 @@ void updateManPosition(GameState* game)
     }
 }
 
+void loadMapAlternative(char* fileName, GameState* game) {
+
+}
+
 void loadMap(char* fileName, GameState* game)
 {
     //int** tile = createArray(game->mapDimX, game->mapDimY);
 	std::array<std::array<int, mapWidth>, mapHeight> tile;
-
 
     int i = 0;
     int j = 0; // les compteurs pour les tableaux dechelles ou de ledges
@@ -76,15 +79,10 @@ void loadMap(char* fileName, GameState* game)
     int l = 0;
     int m = 0;
 
-    //FILE* fp;
 	std::ifstream mapFile(fileName);
 
-    //fp = fopen(name, "r");
-
-    //if (fp == NULL) {
     if (mapFile.is_open() == false) {
-        //printf("Erreur de lecture de la map %s\n", name);
-
+		std::cout << "Unable to open map: " << fileName << '\n';
         exit(1);
     }
 
@@ -112,8 +110,6 @@ void loadMap(char* fileName, GameState* game)
             } // on compte le nombre de snakes
         }
     }
-
-//	exit(0);
 
     game->ledges = (Ledge*)malloc(game->nbLedges * sizeof(Ledge));
     assert(game->ledges != NULL);
