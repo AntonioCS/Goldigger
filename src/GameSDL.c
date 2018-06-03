@@ -286,7 +286,12 @@ void doRenderDynamite(GameState* game)
 void doRenderEnemies(GameState* game)
 {	
     for (int i = 0; i < game->nbEnemies; i++) {
-        SDL_Rect srcsnakeRect = { game->snake[i].enemy_animFrame * game->snake[i].w, 384 + 64, game->snake[i].w, game->snake[i].h };
+        SDL_Rect srcsnakeRect = {
+			game->snake[i].enemy_animFrame * game->snake[i].w,
+			384 + 64,
+			game->snake[i].w,
+			game->snake[i].h
+		};
         SDL_Rect snakeRect = { game->snake[i].x, game->snake[i].y, game->snake[i].w, game->snake[i].h };
         SDL_RenderCopyEx(game->renderer, game->sheetTexture, &srcsnakeRect, &snakeRect, 0, NULL, static_cast<SDL_RendererFlip>(game->snake[i].facingLeft));
     }
