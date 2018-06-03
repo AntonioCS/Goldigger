@@ -122,19 +122,25 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Component.cpp" />
+    <ClCompile Include="src\Entities\Entity.cpp" />
     <ClCompile Include="src\GameSDL.c" />
     <ClCompile Include="src\GameState.c" />
     <ClCompile Include="src\main.c" />
     <ClCompile Include="src\MapObject.c" />
     <ClCompile Include="src\module.c" />
     <ClCompile Include="src\player.c" />
+    <ClCompile Include="src\Entities\Player.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Component.h" />
+    <ClInclude Include="src\Entities\Entity.h" />
     <ClInclude Include="src\GameSDL.h" />
     <ClInclude Include="src\GameState.h" />
     <ClInclude Include="src\MapObject.h" />
     <ClInclude Include="src\module.h" />
     <ClInclude Include="src\player.h" />
+    <ClInclude Include="src\Entities\Player.hpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="doc\html\annotated.html" />
