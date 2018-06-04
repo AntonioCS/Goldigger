@@ -107,6 +107,7 @@
       <AdditionalLibraryDirectories>C:\SDL2\lib\x64;C:\SDL2\SDL2_image\SDL2_image-2.0.3\lib\x64;C:\SDL2\SDL2_mixer\SDL2_mixer-2.0.2\lib\x64;C:\SDL2\SDL2_ttf\SDL2_ttf-2.0.14\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_ttf.lib;SDL2_image.lib;SDL2_mixer.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Console</SubSystem>
+      <AdditionalOptions>/VERBOSE %(AdditionalOptions)</AdditionalOptions>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -119,84 +120,27 @@
       <AdditionalLibraryDirectories>C:\SDL2\lib\x64;C:\SDL2\SDL2_image\SDL2_image-2.0.3\lib\x64;C:\SDL2\SDL2_mixer\SDL2_mixer-2.0.2\lib\x64;C:\SDL2\SDL2_ttf\SDL2_ttf-2.0.14\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_ttf.lib;SDL2_image.lib;SDL2_mixer.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Console</SubSystem>
+      <AdditionalOptions>/VERBOSE %(AdditionalOptions)</AdditionalOptions>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="src\Entities\Entity.cpp" />
+    <ClCompile Include="src\Entities\Player.cpp" />
     <ClCompile Include="src\GameSDL.c" />
     <ClCompile Include="src\GameState.c" />
     <ClCompile Include="src\main.c" />
     <ClCompile Include="src\MapObject.c" />
     <ClCompile Include="src\module.c" />
-    <ClCompile Include="src\player.c" />
-    <ClCompile Include="src\Entities\Player.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Component.h" />
     <ClInclude Include="src\Entities\Entity.h" />
+    <ClInclude Include="src\Entities\Player.hpp" />
     <ClInclude Include="src\GameSDL.h" />
     <ClInclude Include="src\GameState.h" />
     <ClInclude Include="src\MapObject.h" />
     <ClInclude Include="src\module.h" />
-    <ClInclude Include="src\player.h" />
-    <ClInclude Include="src\Entities\Player.hpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="doc\html\annotated.html" />
-    <None Include="doc\html\classes.html" />
-    <None Include="doc\html\files.html" />
-    <None Include="doc\html\globals.html" />
-    <None Include="doc\html\globals_func.html" />
-    <None Include="doc\html\graph_legend.html" />
-    <None Include="doc\html\index.html" />
-    <None Include="doc\html\module_8h.html" />
-    <None Include="doc\html\module_8h_source.html" />
-    <None Include="doc\html\player_8h.html" />
-    <None Include="doc\html\player_8h_source.html" />
-    <None Include="doc\html\search\all_0.html" />
-    <None Include="doc\html\search\all_1.html" />
-    <None Include="doc\html\search\all_2.html" />
-    <None Include="doc\html\search\all_3.html" />
-    <None Include="doc\html\search\all_4.html" />
-    <None Include="doc\html\search\all_5.html" />
-    <None Include="doc\html\search\all_6.html" />
-    <None Include="doc\html\search\all_7.html" />
-    <None Include="doc\html\search\all_8.html" />
-    <None Include="doc\html\search\all_9.html" />
-    <None Include="doc\html\search\classes_0.html" />
-    <None Include="doc\html\search\classes_1.html" />
-    <None Include="doc\html\search\classes_2.html" />
-    <None Include="doc\html\search\classes_3.html" />
-    <None Include="doc\html\search\classes_4.html" />
-    <None Include="doc\html\search\classes_5.html" />
-    <None Include="doc\html\search\files_0.html" />
-    <None Include="doc\html\search\files_1.html" />
-    <None Include="doc\html\search\files_2.html" />
-    <None Include="doc\html\search\functions_0.html" />
-    <None Include="doc\html\search\functions_1.html" />
-    <None Include="doc\html\search\functions_2.html" />
-    <None Include="doc\html\search\functions_3.html" />
-    <None Include="doc\html\search\functions_4.html" />
-    <None Include="doc\html\search\functions_5.html" />
-    <None Include="doc\html\search\functions_6.html" />
-    <None Include="doc\html\search\functions_7.html" />
-    <None Include="doc\html\search\nomatches.html" />
-    <None Include="doc\html\struct_dynamite.html" />
-    <None Include="doc\html\struct_enemy.html" />
-    <None Include="doc\html\struct_game_state.html" />
-    <None Include="doc\html\struct_gold.html" />
-    <None Include="doc\html\struct_ladder.html" />
-    <None Include="doc\html\struct_lava.html" />
-    <None Include="doc\html\struct_ledge.html" />
-    <None Include="doc\html\struct_man.html" />
-    <None Include="doc\html\struct_portal.html" />
-    <None Include="doc\html\_game_state_8h.html" />
-    <None Include="doc\html\_game_state_8h_source.html" />
-    <None Include="doc\html\_game_s_d_l_8h.html" />
-    <None Include="doc\html\_game_s_d_l_8h_source.html" />
-    <None Include="doc\html\_map_object_8h.html" />
-    <None Include="doc\html\_map_object_8h_source.html" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
