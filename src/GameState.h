@@ -7,10 +7,15 @@
 
 #pragma once
 
+#include <SDL2/SDL.h>
+//#include <SDL2/SDL_image.h>
+
 #include <SDL2/SDL_main.h>
 #include <SDL2/SDL_mixer.h>
+#include "Entities/Player.hpp"
 #include "MapObject.h"
-#include "player.h"
+//#include "player.h"
+
 
 /**
 @struct GameState GameState.h
@@ -22,7 +27,8 @@ Néanmoins nous avons mit un exemple de muttateur qui accéde au champ  d'une de
 regroupant les sous structures est de pouvoir comprendre plus facilement le code a mesure qu'on le produit.
 
 */
-struct GameState {
+class GameState {
+public:
     int stageNum;
 
     //MAP
@@ -32,8 +38,10 @@ struct GameState {
     float mapDimY;
 
     //Players
-    Man man;
-
+    //Man man;
+private:
+	Player m_player;
+public:
     //Ledges
     Ledge* ledges;
     int nbLedges;
@@ -74,6 +82,13 @@ struct GameState {
     //Renderer
     SDL_Renderer* renderer;
     SDL_Window* window; // Declare une fenetre
+
+public:
+
+	Player & getPlayer() noexcept;
+
+	GameState() = default;
+	~GameState() = default;
 };
 
 /**
@@ -110,6 +125,7 @@ void initLevel(GameState* game, int level);
  @param [in, out] game pointeur sur GameState
  @return void
  */
+void loadMapAlternative(char* name, GameState* game);
 void loadMap(char* name, GameState* game);
 
 /**
