@@ -11,6 +11,9 @@ int main(int argc, char* argv[])
     GameState gameState;
 
     initSDL(&gameState);
+
+	//gameState.getPlayer().soundDataConfig();
+
     gameLoop(&gameState, 4);
     destroySDL(&gameState);
 
