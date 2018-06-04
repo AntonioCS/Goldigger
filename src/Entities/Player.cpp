@@ -11,7 +11,6 @@ void Player::soundDataConfig() noexcept
 
 Player::Player()
 {
-	soundDataConfig();
 }
 
 
@@ -71,7 +70,7 @@ bool Player::hasDynamite() const noexcept
 
 void Player::dies() noexcept
 {
-	Mix_PlayChannel(-1, m_dieSound, 0);
+	//Mix_PlayChannel(-1, m_dieSound, 0);
 	if (m_lives) {
 		m_lives--;
 	}
