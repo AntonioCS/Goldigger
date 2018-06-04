@@ -30,16 +30,13 @@
     <ClCompile Include="src\module.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\player.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\Entities\Entity.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Entities\Player.cpp">
+    <ClCompile Include="Component.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Component.cpp">
+    <ClCompile Include="src\Entities\Player.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -56,73 +53,14 @@
     <ClInclude Include="src\module.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\player.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\Entities\Entity.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Entities\Player.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Component.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="doc\html\annotated.html" />
-    <None Include="doc\html\classes.html" />
-    <None Include="doc\html\files.html" />
-    <None Include="doc\html\globals.html" />
-    <None Include="doc\html\globals_func.html" />
-    <None Include="doc\html\graph_legend.html" />
-    <None Include="doc\html\index.html" />
-    <None Include="doc\html\module_8h.html" />
-    <None Include="doc\html\module_8h_source.html" />
-    <None Include="doc\html\player_8h.html" />
-    <None Include="doc\html\player_8h_source.html" />
-    <None Include="doc\html\struct_dynamite.html" />
-    <None Include="doc\html\struct_enemy.html" />
-    <None Include="doc\html\struct_game_state.html" />
-    <None Include="doc\html\struct_gold.html" />
-    <None Include="doc\html\struct_ladder.html" />
-    <None Include="doc\html\struct_lava.html" />
-    <None Include="doc\html\struct_ledge.html" />
-    <None Include="doc\html\struct_man.html" />
-    <None Include="doc\html\struct_portal.html" />
-    <None Include="doc\html\_game_state_8h.html" />
-    <None Include="doc\html\_game_state_8h_source.html" />
-    <None Include="doc\html\_game_s_d_l_8h.html" />
-    <None Include="doc\html\_game_s_d_l_8h_source.html" />
-    <None Include="doc\html\_map_object_8h.html" />
-    <None Include="doc\html\_map_object_8h_source.html" />
-    <None Include="doc\html\search\all_0.html" />
-    <None Include="doc\html\search\all_1.html" />
-    <None Include="doc\html\search\all_2.html" />
-    <None Include="doc\html\search\all_3.html" />
-    <None Include="doc\html\search\all_4.html" />
-    <None Include="doc\html\search\all_5.html" />
-    <None Include="doc\html\search\all_6.html" />
-    <None Include="doc\html\search\all_7.html" />
-    <None Include="doc\html\search\all_8.html" />
-    <None Include="doc\html\search\all_9.html" />
-    <None Include="doc\html\search\classes_0.html" />
-    <None Include="doc\html\search\classes_1.html" />
-    <None Include="doc\html\search\classes_2.html" />
-    <None Include="doc\html\search\classes_3.html" />
-    <None Include="doc\html\search\classes_4.html" />
-    <None Include="doc\html\search\classes_5.html" />
-    <None Include="doc\html\search\files_0.html" />
-    <None Include="doc\html\search\files_1.html" />
-    <None Include="doc\html\search\files_2.html" />
-    <None Include="doc\html\search\functions_0.html" />
-    <None Include="doc\html\search\functions_1.html" />
-    <None Include="doc\html\search\functions_2.html" />
-    <None Include="doc\html\search\functions_3.html" />
-    <None Include="doc\html\search\functions_4.html" />
-    <None Include="doc\html\search\functions_5.html" />
-    <None Include="doc\html\search\functions_6.html" />
-    <None Include="doc\html\search\functions_7.html" />
-    <None Include="doc\html\search\nomatches.html" />
+    <ClInclude Include="src\Entities\Player.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
