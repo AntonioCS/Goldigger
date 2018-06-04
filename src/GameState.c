@@ -23,6 +23,9 @@ namespace {
 	const int mapWidth = 20;
 	const int mapHeight = 10;
 }
+
+
+
 int game_getLedgeX(GameState* game, int i)
 {
     return Ledge_getX(&game->ledges[i]);
@@ -31,35 +34,36 @@ int game_getLedgeX(GameState* game, int i)
 void updateManPosition(GameState* game)
 {
     //deplacement man
-    Man* man = &game->man;
-    man->x += man->dx;
-    man->y += man->dy; // on recoit les deplacements elementaires de Eventprocess
+    //Man* man = &game->man;
+	auto player = game->getPlayer();
 
-    if (!game->man.climbing) {
-        if (man->onLedge && !man->slowingDown) {
+	player.move(player.m_dx, player.m_dy); // on recoit les deplacements elementaires de Eventprocess
+
+    if (!player.m_climbing) {
+        if (player.m_onLedge && !player.m_slowingDown) {
             if (game->time % 2 == 0) {
                 //sheet
-                man->animFrame %= 11;
-                man->animFrame++;
+				player.m_animFrame %= 11;
+				player.m_animFrame++;
             }
         }
 
-        if (!game->man.onLedge && !man->slowingDown) {
+        if (!player.m_onLedge && !player.m_slowingDown) {
             if (game->time % 4 == 0) {
                 //printf("%d\n",man->animFrame);
-                man->animFrame %= 4;
-                man->animFrame++;
+				player.m_animFrame %= 4;
+				player.m_animFrame++;
             }
         }
 
-        man->dy += game->mapGravity;
+		player.m_dy += game->mapGravity;
     }
 
-    if (game->man.climbing && game->man.onLadder) {
+    if (player.m_climbing && player.m_onLadder) {
         if (game->time % 3 == 0) {
-            man->animFrame_onLadder %= 3;
+			player.m_animFrame_onLadder %= 3;
 
-            man->animFrame_onLadder++;
+			player.m_animFrame_onLadder++;
         }
     }
 }
@@ -208,23 +212,26 @@ void initLevel(GameState* game, int level)
     game->mapDimY = 10;
     game->time = 0;
 
+	auto player = game->getPlayer();
+
     if (level == 1) {
         setLevelBackground(game, "files/images/cave-background.jpg");
-        initManLevel(&game->man);
-        game->man.x = 220;
+		player.initManLevel();
+        //initManLevel(&game->man);
+		player.setX(220);        
     } else if (level == 2) {
         setLevelBackground(game, "files/images/snowy-background.jpg");
-        initManLevel(&game->man);
-        game->man.facingLeft = 1;
+		player.initManLevel();
+        player.m_facingLeft = 1;
     } else if (level == 3) {
         setLevelBackground(game, "files/images/snowy-background.jpg");
-        initManLevel(&game->man);
-        game->man.y = 380;
-        game->man.facingLeft = 1;
+		player.initManLevel();
+		player.setY(380);
+        player.m_facingLeft = 1;
     } else if (level == 4) {
         setLevelBackground(game, "files/images/cave-background2.jpg");
-        initManLevel(&game->man);
-        game->man.y = 320;
+		player.initManLevel();
+		player.setY(320);        
     }
 }
 
@@ -323,15 +330,20 @@ void process(GameState* game)
 
 void collide2dSnakes(GameState* game)
 {
-    float mw = game->man.w, mh = game->man.h;
-    float mx = game->man.x, my = game->man.y;
+	auto player = game->getPlayer();
+	auto[player_x, player_y] = player.getLocation();
+	auto[player_w, player_h] = player.getDimension();
+
+    float mw = player_w, mh = player_h;
+    float mx = player_x, my = player_y;
 
     for (int j = 0; j < game->nbEnemies; j++) {
         float sw = game->snake[j].w, sh = game->snake[j].h;
         float sx = game->snake[j].x, sy = game->snake[j].y;
 
         if (collide2d(mx, my, sx, sy, mw, mh, sw, sh)) {
-            manHurt(&game->man);
+			//@todo Add this back
+            //manHurt(&game->man);
         }
 
         //control movement of the snakes
@@ -373,8 +385,12 @@ void collide2dSnakes(GameState* game)
 
 void collisionDetect(GameState* game)
 {
-    float mw = game->man.w, mh = game->man.h; // a mettre dans la structure gamestate
-    float mx = game->man.x, my = game->man.y; // a mettre get (mutateur)
+	auto player = game->getPlayer();
+	auto[player_x, player_y] = player.getLocation();
+	auto[player_w, player_h] = player.getDimension();
+
+	float mw = player_w, mh = player_h;
+	float mx = player_x, my = player_y;
 
     //verifie chute
     //  if(game->man.y > 700)
@@ -389,18 +405,18 @@ void collisionDetect(GameState* game)
         if (collide2d(mx, my, gx, gy, mw, mh, gw, gh) && game->golds[i].display == 1) {
             Mix_PlayChannel(-1, game->goldSound, 0);
             game->golds[i].display = 0;
-            game->man.manGold++;
+            player.m_goldAmount++;
         }
     }
     // est ce qu'on est sur une echelle ?
     //printf("%d \n\n\n",game->nbLadders);
 
-    game->man.onLadder = 0;
+    player.m_onLadder = 0;
     for (int i = 0; i < game->nbLadders; i++) {
         float lx = game->ladders[i].x, ly = game->ladders[i].y, lw = game->ladders[i].w, lh = game->ladders[i].h;
         if (collide2dLadder(mx, (my - (mh - (mh * .3))), lx, ly, mw, mh, lw, lh)) {
             //printf("mx:%f my:%f lx:%f ly:%f ladder:%d\n",mx,my,lx,ly,game->man.onLadder);
-            game->man.onLadder = 1;
+			player.m_onLadder = 1;
             break;
         }
     }
@@ -418,45 +434,45 @@ void collisionDetect(GameState* game)
         if (game->ledges[i].destroyed == 0) {
             if (mx + mw / 2 > bx && mx + mw / 2 < bx + bw) {
                 //on se cogne la tete ?
-                if (my < by + bh && my > by && game->man.dy < 0) {
+                if (my < by + bh && my > by && player.m_dy < 0) {
                     //correct y
-                    game->man.y = by + bh;
+                    player.setY(by + bh);
                     my = by + bh;
 
                     //tete cogné, stop velocite
-                    game->man.dy = 0;
-                    game->man.onLedge = 1;
+                    player.m_dy = 0;
+                    player.m_onLedge = 1;
                     //game->man.jumping = 0;
                 }
             }
             if (mx + mw > bx && mx < bx + bw) {
                 //on est sur ledge ?
-                if (my + mh > by && my < by && game->man.dy > 0) {
+                if (my + mh > by && my < by && player.m_dy > 0) {
                     //correct y
-                    game->man.y = by - mh;
+                    player.setY(by - mh);
                     my = by - mh;
 
                     //sur legdge, stop velocite
-                    game->man.dy = 0;
-                    game->man.onLedge = 1;
-                    game->man.jumping = 0;
+                    player.m_dy = 0;
+					player.m_onLedge = 1;
+					player.m_jumping = 0;
                 }
             }
 
             if (my + mh > by && my < by + bh) {
                 //se cogne sur bord droit
-                if (mx < bx + bw && mx + mw > bx + bw && game->man.dx < 0) {
+                if (mx < bx + bw && mx + mw > bx + bw && player.m_dx < 0) {
                     //correct x
-                    game->man.x = bx + bw;
+                    player.setX(bx + bw);
                     mx = bx + bw;
-                    game->man.dx = 0;
+					player.m_dx = 0;
                 }
                 //se cogne sur bord gauche
-                else if (mx + mw > bx && mx < bx && game->man.dx > 0) {
+                else if (mx + mw > bx && mx < bx && player.m_dx > 0) {
                     //correct x
-                    game->man.x = bx - mw;
+                    player.setX(bx - mw);
                     mx = bx - mw;
-                    game->man.dx = 0;
+					player.m_dx = 0;
                 }
             }
         }
@@ -468,4 +484,9 @@ void setLevelBackground(GameState* game, char* bgImagePath)
     SDL_Surface* bg = IMG_Load(bgImagePath);
     game->backgroundTexture = SDL_CreateTextureFromSurface(game->renderer, bg);
     SDL_FreeSurface(bg);
+}
+
+Player & GameState::getPlayer() noexcept
+{
+	return m_player;
 }
