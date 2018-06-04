@@ -33,13 +33,12 @@ public:
 	Mix_Chunk *m_ouchSound = nullptr;
 	Mix_Chunk *m_dieSound = nullptr;
 	Mix_Chunk *m_jumpSound = nullptr;
-
-	void soundDataConfig() noexcept;
 public:
 	Player();
 	~Player();
 	
 	void initManLevel() noexcept;
+	void soundDataConfig() noexcept;
 	//void manHurt();
 	//void manDies();
 
